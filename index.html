@@ -14,50 +14,38 @@ body {
 
 /* HEADER */
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background: #ff4081;
-    padding: 10px 20px;
     color: white;
-}
-
-.logo {
+    text-align: center;
+    padding: 15px;
     font-size: 28px;
     font-weight: bold;
-}
-
-.search {
-    padding: 8px;
-    border-radius: 20px;
-    border: none;
-    width: 200px;
+    animation: bounce 1s infinite;
 }
 
 /* MENÚ */
 .menu {
     display: flex;
-    gap: 15px;
+    justify-content: center;
+    gap: 10px;
     padding: 10px;
-    overflow-x: auto;
 }
 
 .menu button {
     background: #00e5ff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-weight: bold;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 18px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .menu button:hover {
     transform: scale(1.1);
-    background: #00bcd4;
 }
 
-/* GRID DE VIDEOS */
+/* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -70,7 +58,7 @@ header {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
+    transition: 0.3s;
 }
 
 .card:hover {
@@ -85,7 +73,6 @@ header {
 
 .title {
     padding: 10px;
-    font-size: 14px;
     font-weight: bold;
 }
 
@@ -95,68 +82,72 @@ header {
     50% { transform: translateY(-5px); }
     100% { transform: translateY(0); }
 }
-
-.logo {
-    animation: bounce 1s infinite;
-}
 </style>
-
 </head>
 
 <body>
 
-<header>
-    <div class="logo">ChiquiTube</div>
-    <input class="search" placeholder="Buscar videos...">
-</header>
+<header>ChiquiTube</header>
 
 <div class="menu">
-    <button> masha</button>
-    <button>🎵 Música</button>
-    <button>📚 Educación</button>
-    <button>😂 Diversión</button>
-    <button>🐶 Animales</button>
+    <button onclick="mostrarSeccion('videos')">🏠 Inicio</button>
+    <button onclick="mostrarSeccion('musica')">🎵 Música</button>
+    <button onclick="mostrarSeccion('juegos')">🎮 Juegos</button>
+    <button onclick="mostrarSeccion('educacion')">📚 Educación</button>
 </div>
 
-<div class="grid">
-    <div class="card">
-        <iframe src="https://www.youtube.com/watch?v=D6-o6eZ-VXI"></iframe>
-        <div class="title">Video divertido 1</div>
-    </div>
-
-    <div class="card">
-        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-        <div class="title">Video divertido 2</div>
-    </div>
-
+<!-- INICIO -->
+<div id="videos" class="grid">
     <div class="card">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-        <div class="title">Video divertido 3</div>
+        <div class="title">Video divertido</div>
+    </div>
+</div>
+
+<!-- MUSICA -->
+<div id="musica" class="grid" style="display:none;">
+    <div class="card">
+        <iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk"></iframe>
+        <div class="title">Despacito</div>
     </div>
 
     <div class="card">
-        <iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe>
-        <div class="title">Video divertido 4</div>
+        <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ"></iframe>
+        <div class="title">Counting Stars</div>
     </div>
 
-<iframe width="100%" height="200"
-src=https://www.youtube.com/watch?v=OnfAzdmtp-8
-title="YouTube video"
-frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen>
-</iframe>
+    <div class="card">
+        <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g"></iframe>
+        <div class="title">Perfect</div>
+    </div>
+</div>
+
+<!-- JUEGOS -->
+<div id="juegos" class="grid" style="display:none;">
+    <div class="card">
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+        <div class="title">Juego divertido</div>
+    </div>
+</div>
+
+<!-- EDUCACION -->
+<div id="educacion" class="grid" style="display:none;">
+    <div class="card">
+        <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U"></iframe>
+        <div class="title">Aprender es divertido</div>
+    </div>
 </div>
 
 <script>
-// Simulación de búsqueda simple
-document.querySelector(".search").addEventListener("input", function(e) {
-    let texto = e.target.value.toLowerCase();
-    document.querySelectorAll(".title").forEach(t => {
-        t.parentElement.style.display =
-            t.innerText.toLowerCase().includes(texto) ? "block" : "none";
+function mostrarSeccion(seccion) {
+    const secciones = ["videos", "musica", "juegos", "educacion"];
+
+    secciones.forEach(id => {
+        document.getElementById(id).style.display = "none";
     });
-});
+
+    document.getElementById(seccion).style.display = "grid";
+}
 </script>
 
 </body>
